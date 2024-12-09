@@ -1,0 +1,197 @@
+const LINE_CHANNEL_ACCESS_TOKEN = 'YOUR_LINE_CHANNEL_ACCESS_TOKEN'; // ใส่ TOKEN ที่ถูกต้อง
+
+const restaurantInfo = `
+Welcome to Group3's Restaurant! Here is some information:
+- Name: Group3's Restaurant
+- Menu: Thai Cuisine:  
+*recommend* Pad Thai (Rice Noodles, Egg, Shrimp, Tofu, Peanuts, Garlic) - 90 บาท,  
+Green Curry (Coconut Milk, Green Curry Paste, Chicken, Bamboo Shoots, Basil) - 100 บาท,  
+Fried Rice (Rice, Egg, Pork, Garlic, Carrot, Peas) - 80 บาท,  
+Tom Yum Soup (Shrimp, Mushrooms, Lemongrass, Lime, Chili Paste) - 120 บาท,  
+*recommend* Som Tum (Papaya, Tomatoes, Peanuts, Garlic, Lime, Fish Sauce) - 60 บาท,  
+Massaman Curry (Coconut Milk, Potatoes, Onions, Peanuts, Chicken, Massaman Curry Paste) - 120 บาท,  
+*recommend* Khao Soi (Egg Noodles, Coconut Milk, Chicken, Curry Paste, Pickled Mustard Greens, Shallots) - 80-100 บาท,  
+Pad Kra Pao (Minced Pork, Basil, Garlic, Chili, Soy Sauce) - 80 บาท,  
+Gaeng Som (Tamarind Soup, Shrimp, Vegetables, Curry Paste) - 100 บาท,  
+*recommend* Pla Rad Prik (Crispy Fried Fish, Chili Sauce, Garlic, Tamarind) - 150 บาท,  
+*recommend* Kai Yang (Grilled Chicken, Lemongrass, Garlic, Coriander Root) - 120 บาท,  
+Yum Woon Sen (Glass Noodles, Shrimp, Lime, Garlic, Chili, Vegetables) - 100 บาท,  
+Laab Moo (Minced Pork, Lime Juice, Chili, Roasted Rice Powder, Herbs) - 90 บาท,  
+Hor Mok (Steamed Fish Curry, Coconut Milk, Red Curry Paste, Kaffir Lime Leaves) - 100 บาท,  
+Pad See Ew (Wide Rice Noodles, Soy Sauce, Egg, Chinese Broccoli, Garlic) - 90 บาท,  
+Gaeng Phed Ped Yang (Red Curry, Roasted Duck, Coconut Milk, Pineapple, Tomatoes) - 150 บาท,  
+Nam Tok Moo (Grilled Pork Salad, Lime, Fish Sauce, Chili, Mint) - 90 บาท,  
+Moo Ping (Grilled Pork Skewers, Soy Sauce, Garlic, Palm Sugar) - 15 บาท/ไม้,  
+Khao Pad Sapparot (Fried Rice, Pineapple, Shrimp, Cashew Nuts, Curry Powder) - 100 บาท,  
+Gaeng Keow Wan (Green Curry, Coconut Milk, Eggplant, Chicken, Basil) - 100 บาท,  
+Kuay Teow Nam Tok (Beef Noodle Soup, Blood Broth, Garlic, Cilantro, Scallions) - 70 บาท,  
+Khao Moo Dang (Red Pork with Rice, Sweet Sauce, Cucumber, Boiled Egg) - 80 บาท,  
+Pad Prik King (Stir-Fried Pork with Red Curry Paste, Green Beans, Kaffir Lime Leaves) - 90 บาท,  
+Tod Man Pla (Thai Fish Cakes, Red Curry Paste, Kaffir Lime Leaves, Chili Sauce) - 100 บาท,  
+Khao Man Gai (Steamed Chicken with Rice, Ginger Sauce, Cucumber, Soup) - 80 บาท,  
+*most popular* Tom Kha Gai (Chicken Coconut Soup, Galangal, Lemongrass, Lime) - 120 บาท,  
+
+Thai Desserts:  
+*most popular* Mango Sticky Rice (Sticky Rice, Coconut Milk, Mango, Sugar, Salt) - 70 บาท,  
+Tub Tim Krob (Water Chestnuts, Coconut Milk, Sugar, Red Food Coloring) - 40-60 บาท,  
+Khanom Chan (Layered Rice Flour Dessert, Coconut Milk, Sugar, Pandan Flavor) - 60 บาท,  
+Lod Chong (Rice Flour Noodles, Coconut Milk, Palm Sugar Syrup) - 60 บาท,  
+Banana in Coconut Milk (Banana, Coconut Milk, Sugar, Salt) - 60 บาท,  
+Khao Tom Mad (Sticky Rice, Banana, Coconut Milk, Black Beans) - 60 บาท,  
+Thong Yip (Egg Yolks, Sugar Syrup, Jasmine Water) - 70 บาท,  
+Thong Yod (Egg Yolks, Sugar Syrup, Flour) - 70 บาท,  
+Foi Thong (Egg Yolks, Sugar Syrup, Jasmine Water) - 70 บาท,  
+Sangkhaya Fak Thong (Pumpkin, Egg Custard, Coconut Milk) - 70 บาท,  
+Khanom Buang (Thai Crispy Pancakes, Coconut Cream, Mung Bean Paste) - 60 บาท,  
+Kluay Tod (Fried Bananas, Rice Flour, Sesame Seeds, Sugar) - 60 บาท,  
+Khanom Mo Kaeng (Thai Custard, Mung Beans, Coconut Milk, Palm Sugar) - 60 บาท,  
+Bua Loy (Rice Flour Dumplings, Coconut Milk, Sugar, Pandan) - 60 บาท,  
+Khanom Krok (Coconut Rice Pancakes, Sugar, Salt, Coconut Milk) - 60 บาท,  
+Ruam Mit (Mixed Sweetened Toppings with Coconut Milk and Ice) - 60 บาท,  
+Kanom Thien (Steamed Sticky Rice with Coconut and Sugar Filling) - 60 บาท,  
+
+Thai Drinks:  
+Thai Iced Tea (Black Tea, Condensed Milk, Sugar, Ice) - 50 บาท,  
+Thai Iced Coffee (Strong Coffee, Sweetened Condensed Milk, Ice) - 50 บาท,  
+Nam Ma Toom (Bael Fruit Tea, Sugar, Ice) - 50 บาท,  
+Nam Krajeab (Roselle Tea, Sugar, Ice) - 50 บาท,  
+Cha Yen (Milk Tea, Sugar, Ice) - 50 บาท,  
+Nam Oi (Sugarcane Juice, Ice) - 50 บาท,  
+Nam Takrai (Lemongrass Drink, Sugar, Ice) - 50 บาท,  
+Nam Maphrao (Fresh Coconut Water) - 50 บาท,  
+Nam Bai Bua Bok (Pennywort Juice, Sugar, Ice) - 50 บาท,  
+Nam Matoom Sod (Fresh Bael Fruit Juice, Sugar, Ice) - 50 บาท,  
+*most popular* Nam Cha Dum Yen (Iced Black Tea, Sugar, Lemon) - 50 บาท,  
+Nam Cha Dam Ron (Hot Black Tea, Sugar, Lime) - 50 บาท,  
+Oliang (Thai Black Coffee, Sugar, Ice) - 50 บาท,  
+Kafae Boran (Traditional Thai Coffee, Sweetened Condensed Milk, Ice) - 50 บาท,  
+Nam Manow (Lime Juice, Sugar, Ice Water) - 50 บาท  
+
+Desserts:  
+Mango Sticky Rice (Sticky Rice, Coconut Milk, Mango, Sugar, Salt) - 70 บาท,  
+Churros (Flour, Sugar, Butter, Eggs, Cinnamon) - 60 บาท  
+- Opening hours: 10:00 AM - 10:00 PM
+- Location: 31/28 street,vichit,Phuket City,Phuket
+- map: https://maps.app.goo.gl/qPL7hHnKSBXBfNau6
+- Contact: 021-345-6789
+- Promotions: 10% discount on weekends!,15% discount for member!
+`;
+
+
+function doPost(e) {
+    // Check if POST data exists
+    if (typeof e === "undefined" || typeof e.postData === "undefined") {
+        Logger.log("Error: No POST data");
+        return ContentService.createTextOutput(JSON.stringify({ 'content': 'post ok' }))
+            .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    try {
+        // Parse LINE webhook payload
+        const json = JSON.parse(e.postData.contents);
+        const replyToken = json.events[0].replyToken;
+        const userMessage = json.events[0].message.text;
+        const userId = json.events[0].source.userId;
+
+        // Reset user history every time by creating a new context
+        let userHistory = {
+            contents: [
+                { 
+                    role: "user", 
+                    parts: [{ 
+                        text: `You're female employee for my restaurant. Answer consumers according to given information: ${restaurantInfo} **keep in mind You're not allowed to answer topics except about our restaurant** **Do not show ingredient if user not asked** **Format text (like separatd catagory) to make it easy for user to read** **use friendly word** **If user ask for recommend use 'most popular' and 'recommend' menu** ` 
+                    }] 
+                },
+                // Add the current user message
+                { 
+                    role: "user", 
+                    parts: [{ 
+                        text: userMessage 
+                    }] 
+                }
+            ],
+        };
+
+        // Synchronously get AI response
+        const aiResponse = chatSync(userMessage, userHistory, userId);
+
+        // Prepare LINE reply message
+        const replyMessage = {
+            replyToken: replyToken,
+            messages: [{ type: 'text', text: aiResponse }],
+        };
+
+        // Send reply to LINE
+        const url = 'https://api.line.me/v2/bot/message/reply';
+        const options = {
+            'method': 'post',
+            'contentType': 'application/json',
+            'headers': {
+                'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN,
+            },
+            'payload': JSON.stringify(replyMessage),
+            'timeout': 10000,  // Increased timeout to 10 seconds
+            'muteHttpExceptions': true,
+        };
+
+        // Send the reply
+        const response = UrlFetchApp.fetch(url, options);
+
+        // Return successful response
+        return ContentService.createTextOutput(JSON.stringify({ 'content': 'post ok' }))
+            .setMimeType(ContentService.MimeType.JSON);
+
+    } catch (error) {
+        Logger.error('Error processing webhook:', error);
+        return ContentService.createTextOutput(JSON.stringify({ 'content': 'post error' }))
+            .setMimeType(ContentService.MimeType.JSON);
+    }
+}
+
+
+// ฟังก์ชันในการดึงประวัติจาก Cache
+function getUserHistoryFromCache(userId) {
+  //  let userId = "ffffffffff";
+  const cache = CacheService.getScriptCache();
+  const cachedHistory = cache.get(userId);
+
+  if (cachedHistory) {
+   return (JSON.parse(cachedHistory));
+  }
+  return false;  // หากไม่พบใน Cache จะคืนค่า null
+}
+
+// ฟังก์ชันในการบันทึกประวัติผู้ใช้ลงใน Cache
+function setUserHistoryToCache(userId, history) {
+  const cache = CacheService.getScriptCache();
+  cache.put(userId, JSON.stringify(history), 1500);  // ตั้งเวลา Cache เป็น 25 นาที
+}
+
+
+function chatSync(userPrompt, userHistory, userId) {
+
+    try {
+        userHistory.contents.push({ role: "user", parts: [{ text: userPrompt }] });
+        
+        // Use synchronous API call
+        const payload = {
+            method: 'post',
+            contentType: 'application/json',
+            payload: JSON.stringify(userHistory)
+        };
+        
+        const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAFtWXjCH9465ae2yPRbMk0PwAm1PlMhvg";
+        const response = UrlFetchApp.fetch(url, payload);
+        const jsonResponse = JSON.parse(response.getContentText());
+        
+        const aiResponse = jsonResponse.candidates[0].content.parts[0].text;
+        
+        userHistory.contents.push({ role: "model", parts: [{ text: aiResponse }] });
+        setUserHistoryToCache(userId, userHistory);
+        
+        return aiResponse;
+    } catch (error) {
+        Logger.error("Error in chatSync:", error);
+        return "Sorry, I couldn't process your request.";
+    }
+}
